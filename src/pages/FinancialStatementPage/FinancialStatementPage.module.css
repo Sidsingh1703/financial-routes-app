@@ -254,6 +254,13 @@
   pointer-events: none;
 }
 
+.covenantGraphSvg {
+  width: 100%;
+  height: auto;
+  max-width: 1000px;
+  display: block;
+}
+
 .covenantBarsContainer {
   position: relative;
   z-index: 1;

@@ -244,27 +244,12 @@ const FinancialStatementPage = () => {
                     initial="hidden"
                     animate={showGraph ? "visible" : "hidden"}
                   >
-                    <h2 className={styles.sectionTitle}>Covenant Status</h2>
                     <div className={styles.covenantContainer}>
-                      <div className={styles.covenantSvgWrapper}>
-                        <img 
-                          src="/assets/convenant-status.svg" 
-                          alt="Covenant Status Background" 
-                          className={styles.covenantSvg} 
-                        />
-                        <div className={styles.covenantBarsContainer}>
-                          {covenantData.map((item, index) => (
-                            <CovenantBar 
-                              key={index}
-                              label={item.label}
-                              value={item.value}
-                              limit={item.limit}
-                              isGood={item.isGood}
-                              percentage={item.percentage}
-                            />
-                          ))}
-                        </div>
-                      </div>
+                      <img 
+                        src="/assets/convenant-status-graph.svg" 
+                        alt="Covenant Status"
+                        className={styles.covenantGraphSvg}
+                      />
                     </div>
                   </motion.div>
                 </div>
