@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { Header } from '../components';
-import DeepDiveCard from '../components/DeepDiveCard/DeepDiveCard';
-import ProgressBar from '../components/ProgressBar/ProgressBar';
-import SidebarItem from '../components/SidebarItem/SidebarItem';
-import CovenantBar from '../components/CovenantBar/CovenantBar';
+import { Header } from '../../components';
+import DeepDiveCard from '../../components/DeepDiveCard/DeepDiveCard';
+import ProgressBar from '../../components/ProgressBar/ProgressBar';
+import SidebarItem from '../../components/SidebarItem/SidebarItem';
+import CovenantBar from '../../components/CovenantBar/CovenantBar';
 import styles from './FinancialStatementPage.module.css';
 
 /**

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="36px" height="36px" viewBox="0 0 36 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Shield Icon</title>
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M18,3 L30,9 L30,16.5 C30,23.4 24.75,29.85 18,32 C11.25,29.85 6,23.4 6,16.5 L6,9 L18,3 Z" fill="#000000" fill-rule="nonzero"></path>
+        <path d="M18,7 L18,28 C23.25,26.25 27,21.15 27,16.5 L27,11.25 L18,7 Z" fill="#333333" fill-rule="nonzero"></path>
+        <path d="M15,16.5 L18,19.5 L24,13.5 L22.5,12 L18,16.5 L16.5,15 L15,16.5 Z" fill="#FFFFFF" fill-rule="nonzero"></path>
+    </g>
+</svg>

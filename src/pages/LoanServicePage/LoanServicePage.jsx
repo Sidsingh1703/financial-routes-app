@@ -1,8 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Header } from '../components';
+import { Header } from '../../components';
 import styles from './LoanServicePage.module.css';
-import OfferCard from '../components/OfferCard/OfferCard';
+import OfferCard from '../../components/OfferCard/OfferCard';
 
 /**
  * LoanServicePage component that displays loan service information

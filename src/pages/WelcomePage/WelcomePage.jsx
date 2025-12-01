@@ -1,7 +1,7 @@
 import React from 'react';
 import { MoveDown } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { Header } from '../components';
+import Header from '../../components/Header/Header';
 import styles from './WelcomePage.module.css';
 
 /**
