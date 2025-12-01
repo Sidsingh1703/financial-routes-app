@@ -131,20 +131,20 @@ const BenefitsSummaryPage = () => {
         </div>
       </motion.main>
       
-      <motion.img
-        src="/assets/welcome1.svg"
-        alt=""
+      <motion.video
+        className={styles.bgVideo}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
         aria-hidden="true"
-        className={styles.bgImage}
-        initial={{ opacity: 0, scale: 1.15, x: 80, y: 50 }}
-        animate={{
-          opacity: 0.9,
-          scale: [1.15, 1.05, 1.15],
-          x: [80, 20, 80],
-          y: [50, 10, 50],
-        }}
-        transition={{ duration: 10, ease: 'easeInOut', repeat: Infinity, repeatType: 'mirror' }}
-      />
+        initial={{ opacity: 0, scale: 1.05 }}
+        animate={{ opacity: 0.95, scale: 1 }}
+        transition={{ duration: 1.2, ease: 'easeOut' }}
+      >
+        <source src="/assets/bgvideo.mp4" type="video/mp4" />
+      </motion.video>
       <div className={styles.overlay}></div>
 
       {/* Background placeholder */}
