@@ -7,7 +7,7 @@ import ProgressBar from '../../components/ProgressBar/ProgressBar';
 import SidebarItem from '../../components/SidebarItem/SidebarItem';
 import CovenantBar from '../../components/CovenantBar/CovenantBar';
 import { Snackbar, Alert } from '@mui/material';
-import SSEStatus from '../../components/SSEStatus';
+// SSE Status removed
 import styles from './FinancialStatementPage.module.css';
 
 /**
@@ -398,39 +398,9 @@ const FinancialStatementPage = () => {
       {/* Background placeholder */}
       <div className={styles.backgroundPlaceholder}></div>
       
-      {/* Navigation info */}
-      {navigationEvent && (
-        <motion.div 
-          className={styles.navigationInfo}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          style={{
-            position: 'fixed',
-            top: '80px',
-            right: '20px',
-            background: 'rgba(0, 0, 0, 0.7)',
-            padding: '10px 15px',
-            borderRadius: '8px',
-            color: 'white',
-            fontSize: '14px',
-            zIndex: 100
-          }}
-        >
-          <p><strong>Source:</strong> {navigationEvent.sourceAppId}</p>
-          <p><strong>Time:</strong> {navigationEvent.timestamp}</p>
-          <p><strong>Referrer:</strong> {navigationEvent.referrer}</p>
-          <p><strong>Action:</strong> {navigationEvent.action}</p>
-          <p><strong>Document ID:</strong> {navigationEvent.documentId}</p>
-        </motion.div>
-      )}
+      {/* Navigation info removed */}
       
-      {/* SSE Status (only visible in development) */}
-      {process.env.NODE_ENV === 'development' && (
-        <div style={{ position: 'fixed', bottom: '10px', left: '10px', zIndex: 1000 }}>
-          <SSEStatus showEvents={true} />
-        </div>
-      )}
+      {/* SSE Status removed */}
       
       {/* Notification */}
       <Snackbar 
