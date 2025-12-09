@@ -15,15 +15,15 @@ const DeepDiveCard = ({ title, value, position = 0, isVisible = false }) => {
   const cardVariants = {
     hidden: { 
       opacity: 0,
-      y: 20,
+      scale: 0.8
     },
     visible: { 
       opacity: 1,
-      y: 0,
+      scale: 1,
       transition: {
         type: 'spring',
-        damping: 12,
-        stiffness: 100,
+        damping: 15,
+        stiffness: 150,
         delay: 0.2 + (position * 0.1),
       }
     }
@@ -40,14 +40,36 @@ const DeepDiveCard = ({ title, value, position = 0, isVisible = false }) => {
     }
   };
 
+  const glowAnimation = {
+    boxShadow: [
+      '0 0 0 0 rgba(255, 230, 0, 0), 0 0 0 0 rgba(50, 255, 255, 0)',
+      '0 0 20px 5px rgba(255, 230, 0, 0.4), 0 0 15px 3px rgba(50, 255, 255, 0.3)',
+      '0 0 0 0 rgba(255, 230, 0, 0), 0 0 0 0 rgba(50, 255, 255, 0)'
+    ],
+    transition: {
+      duration: 2,
+      repeat: Infinity,
+      ease: 'easeInOut',
+      delay: position * 0.3
+    }
+  };
+
   return (
     <motion.div 
       className={styles.cardContainer}
       initial="hidden"
       animate={isVisible ? "visible" : "hidden"}
       variants={cardVariants}
+      whileHover={{ 
+        scale: 1.05,
+        boxShadow: '0 0 30px 8px rgba(255, 230, 0, 0.6), 0 0 20px 5px rgba(50, 255, 255, 0.5)',
+        transition: { type: 'spring', stiffness: 300, damping: 20 }
+      }}
     >
-      <div className={styles.card}>
+      <motion.div 
+        className={styles.card}
+        animate={isVisible ? glowAnimation : {}}
+      >
         {/* SVG Background */}
         <svg className={styles.cardBorder} width="420" height="420" viewBox="0 0 420 420" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M402.942 406.782H122.121V406.097H402.115V122.268H402.942V406.782Z" fill="#FFE600"/>
@@ -67,7 +89,7 @@ const DeepDiveCard = ({ title, value, position = 0, isVisible = false }) => {
           <h3 className={styles.cardTitle}>{title}</h3>
           <div className={styles.cardValue}>{value}</div>
         </motion.div>
-      </div>
+      </motion.div>
     </motion.div>
   );
 };

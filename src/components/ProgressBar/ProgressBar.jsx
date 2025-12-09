@@ -37,12 +37,18 @@ const ProgressBar = ({ percentage = 0, label = 'Progress' }) => {
   };
 
   return (
-    <div className={styles.progressContainer}>
+    <motion.div 
+      className={styles.progressContainer}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
       <div className={styles.progressHeader}>
         <motion.span 
           className={styles.progressLabel}
           animate={percentage === 100 ? "complete" : "initial"}
           variants={textVariants}
+          whileHover={{ scale: 1.05, color: '#FFE600' }}
         >
           {label}
         </motion.span>
@@ -50,18 +56,36 @@ const ProgressBar = ({ percentage = 0, label = 'Progress' }) => {
           className={styles.progressPercentage}
           animate={percentage === 100 ? "complete" : "initial"}
           variants={textVariants}
+          whileHover={{ scale: 1.1 }}
         >
           {percentage}%
         </motion.span>
       </div>
-      <div className={styles.progressBarContainer}>
+      <motion.div 
+        className={styles.progressBarContainer}
+        whileHover={{ scale: 1.02 }}
+      >
         <motion.div 
           className={styles.progressBar} 
           initial={{ width: `${prevPercentage.current}%` }}
-          animate={controls}
+          animate={{
+            ...controls,
+            boxShadow: [
+              '0 0 10px rgba(255, 230, 0, 0.3)',
+              '0 0 20px rgba(255, 230, 0, 0.6)',
+              '0 0 10px rgba(255, 230, 0, 0.3)'
+            ]
+          }}
+          transition={{
+            boxShadow: {
+              duration: 2,
+              repeat: Infinity,
+              ease: 'easeInOut'
+            }
+          }}
         ></motion.div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 

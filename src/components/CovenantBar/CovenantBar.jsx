@@ -49,34 +49,78 @@ const CovenantBar = ({ label, value, limit, isGood = true, percentage = 50 }) =>
   const displayValue = limit ? `${value} (Limit ${limit})` : `${value}`;
 
   return (
-    <div className={styles.covenantBarWrapper}>
+    <motion.div 
+      className={styles.covenantBarWrapper}
+      initial={{ opacity: 0, x: -30 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ type: 'spring', stiffness: 100, damping: 15 }}
+      whileHover={{ 
+        scale: 1.03,
+        x: 10,
+        transition: { type: 'spring', stiffness: 300 }
+      }}
+    >
       <div className={styles.covenantBarContainer}>
         <motion.div 
           className={styles.labelContainer}
           initial="hidden"
           animate="visible"
           variants={textVariants}
+          whileHover={{ scale: 1.05, color: '#FFE600' }}
         >
           <span className={styles.label}>{label}</span>
         </motion.div>
-        <div className={styles.barContainer}>
+        <motion.div 
+          className={styles.barContainer}
+          whileHover={{ scale: 1.05 }}
+        >
           <motion.div 
             className={`${styles.bar} ${isGood ? styles.goodBar : styles.badBar}`}
             initial="hidden"
-            animate="visible"
-            variants={barVariants}
+            animate={{
+              width: `${percentage}%`,
+              opacity: 1,
+              boxShadow: isGood 
+                ? [
+                    '0 0 10px rgba(0, 255, 0, 0.3)',
+                    '0 0 20px rgba(0, 255, 0, 0.6)',
+                    '0 0 10px rgba(0, 255, 0, 0.3)'
+                  ]
+                : [
+                    '0 0 10px rgba(255, 0, 0, 0.3)',
+                    '0 0 20px rgba(255, 0, 0, 0.6)',
+                    '0 0 10px rgba(255, 0, 0, 0.3)'
+                  ]
+            }}
+            transition={{
+              width: {
+                duration: 1.5,
+                ease: "easeOut",
+                delay: 0.3
+              },
+              opacity: {
+                duration: 0.5,
+                ease: "easeIn"
+              },
+              boxShadow: {
+                duration: 2,
+                repeat: Infinity,
+                ease: 'easeInOut'
+              }
+            }}
           />
-        </div>
+        </motion.div>
         <motion.div 
           className={styles.valueContainer}
           initial="hidden"
           animate="visible"
           variants={textVariants}
+          whileHover={{ scale: 1.1, color: '#32FFFF' }}
         >
           <span className={styles.value}>{displayValue}</span>
         </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
