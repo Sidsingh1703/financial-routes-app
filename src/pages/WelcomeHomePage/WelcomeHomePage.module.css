@@ -46,6 +46,8 @@
 .waveEmoji {
   margin-left: 0.2em;
   font-size: 0.9em;
+  display: inline-block;
+  transform-origin: 70% 70%;
 }
 
 .subheading {

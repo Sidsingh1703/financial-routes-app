@@ -90,7 +90,11 @@ const WelcomeHomePage = () => {
         >
           <motion.h1 className={styles.heading} variants={itemVariants}>
             Hello, there!
-            <motion.span className={styles.waveEmoji} variants={waveVariants}>
+            <motion.span 
+              className={styles.waveEmoji} 
+              variants={waveVariants}
+              animate="visible"
+            >
               👋
             </motion.span>
           </motion.h1>
