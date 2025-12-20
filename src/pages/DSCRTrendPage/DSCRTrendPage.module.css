@@ -71,7 +71,7 @@
   flex-direction: row;
   gap: 40px;
   width: 100%;
-  align-items: stretch;
+  align-items: self-start;
 }
 
 /* Trend Analysis Column */
@@ -93,7 +93,7 @@
   font-size: 22px;
   font-weight: 700;
   color: #FFFFFF;
-  margin: 0 0 20px 12px;
+  margin: 0 0 20px 8%;
 }
 
 .trendMetrics {
@@ -140,7 +140,7 @@
 }
 
 .chart {
-  width: 100%;
+  width: 96%;
   height: 100%;
   position: relative;
   display: flex;
@@ -158,11 +158,10 @@
 
 /* Alert Column */
 .alertColumn {
-  flex: 1 1 360px;
+  flex: 1 1 300px;
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 520px;
 }
 
 .alertContainer {
@@ -189,7 +188,7 @@
 .alertContent {
   position: relative;
   z-index: 2;
-  padding: clamp(20px, 3vw, 32px);
+  padding: clamp(20px, 10vw, 85px);
   width: 100%;
   height: 100%;
   display: flex;

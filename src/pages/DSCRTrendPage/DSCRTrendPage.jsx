@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { Header } from '../../components';
 import SidebarItem from '../../components/SidebarItem/SidebarItem';
 import { Snackbar, Alert } from '@mui/material';
+import lottie from 'lottie-web';
+import dscrTrendAnimation from '../../assets/animations/dscrTrendAnalysis.json';
+import errorAlertAnimation from '../../assets/animations/errorAlert.json';
 // SSE Status removed
 import styles from './DSCRTrendPage.module.css';
 
@@ -11,6 +14,53 @@ import styles from './DSCRTrendPage.module.css';
  * DSCRTrendPage component for displaying DSCR trend analysis
  */
 const DSCRTrendPage = () => {
+  const trendAnimationContainerRef = useRef(null);
+  const trendAnimationInstanceRef = useRef(null);
+  const alertAnimationContainerRef = useRef(null);
+  const alertAnimationInstanceRef = useRef(null);
+
+  useEffect(() => {
+    if (!trendAnimationContainerRef.current) {
+      return undefined;
+    }
+
+    const anim = lottie.loadAnimation({
+      container: trendAnimationContainerRef.current,
+      renderer: 'canvas',
+      loop: true,
+      autoplay: true,
+      animationData: dscrTrendAnimation,
+    });
+
+    trendAnimationInstanceRef.current = anim;
+
+    return () => {
+      anim.destroy();
+      trendAnimationInstanceRef.current = null;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!alertAnimationContainerRef.current) {
+      return undefined;
+    }
+
+    const anim = lottie.loadAnimation({
+      container: alertAnimationContainerRef.current,
+      renderer: 'canvas',
+      loop: true,
+      autoplay: true,
+      animationData: errorAlertAnimation,
+    });
+
+    alertAnimationInstanceRef.current = anim;
+
+    return () => {
+      anim.destroy();
+      alertAnimationInstanceRef.current = null;
+    };
+  }, []);
+
   const navigate = useNavigate();
   const [activeTabIndex, setActiveTabIndex] = useState(2); // Operational Docx Scan is active by default
   const [navigationEvent, setNavigationEvent] = useState(null);
@@ -169,22 +219,15 @@ const DSCRTrendPage = () => {
                 
                 <div className={styles.chartContainer}>
                   {/* Chart visualization */}
-                  <div className={styles.chart}>
-                    <motion.img 
-                      src="/assets/graph.svg" 
-                      alt="DSCR Trend Graph" 
+                  <div
+                    className={styles.chart}
+                    
+                  >
+                    <div
+                      ref={trendAnimationContainerRef}
                       className={styles.graphSvg}
-                      initial={{ opacity: 0, scale: 0.8, x: -50 }}
-                      animate={{ opacity: 1, scale: 1, x: 0 }}
-                      transition={{ 
-                        type: 'spring', 
-                        stiffness: 100, 
-                        damping: 15,
-                        delay: 0.6
-                      }}
-                      whileHover={{ 
-                        scale: 1.03
-                      }}
+                      style={{ pointerEvents: 'none' }}
+                      aria-hidden
                     />
                   </div>
                 </div>
@@ -199,10 +242,11 @@ const DSCRTrendPage = () => {
                   Alert
                 </h2>
                 <div className={styles.alertContainer}>
-                  <img 
-                    src="/assets/alert.svg" 
-                    alt="Alert Border" 
+                  <div
+                    ref={alertAnimationContainerRef}
                     className={styles.alertBorderSvg}
+                    style={{ pointerEvents: 'none' }}
+                    aria-hidden
                   />
                   <div className={styles.alertContent}>
                     <motion.div 
@@ -218,11 +262,7 @@ const DSCRTrendPage = () => {
                         repeatDelay: 1
                       }}
                     >
-                      <img 
-                        src="/assets/alert-icon.svg" 
-                        alt="Alert Icon" 
-                        className={styles.alertIcon} 
-                      />
+
                     </motion.div>
                     <h3 className={styles.alertTitle}>Potential breach detected - DSCR dropped below covenant level.</h3>
                     <p className={styles.alertDescription}>
