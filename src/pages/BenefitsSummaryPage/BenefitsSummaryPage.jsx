@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { Grow } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { Header } from '../../components';
 import SidebarItem from '../../components/SidebarItem/SidebarItem';
@@ -121,32 +122,104 @@ const BenefitsSummaryPage = () => {
             </p>
           </motion.div>
           
-          {/* Benefits Summary SVG */}
+          {/* Benefits Summary SVG with Content Overlay */}
           <motion.div 
             className={styles.benefitsContainer}
             variants={containerVariants}
           >
-            <motion.img 
-              src="/assets/benefitsummary.svg" 
-              alt="Benefits Summary" 
-              className={styles.benefitsSummarySvg}
-              initial={{ opacity: 0, scale: 0.8, rotateY: -45 }}
-              animate={{ 
-                opacity: 1, 
-                scale: 1, 
-                rotateY: 0
-              }}
-              transition={{ 
-                opacity: { duration: 1 },
-                scale: { duration: 1 },
-                rotateY: { type: 'spring', stiffness: 80, damping: 15 }
-              }}
-              whileHover={{ 
-                scale: 1.05,
-                rotateY: 5,
-                transition: { type: 'spring', stiffness: 300, damping: 20 }
-              }}
-            />
+            <div className={styles.svgWithOverlay}>
+              {/* Base SVG Animation */}
+              <motion.object
+                type="image/svg+xml"
+                data="/assets/animated-svg/Benefits Summary-UI.svg"
+                alt="Benefits Summary"
+                className={styles.benefitsSummarySvg}
+                initial={{ opacity: 0, scale: 0.8, rotateY: -45 }}
+                animate={{ 
+                  opacity: 1, 
+                  scale: 1, 
+                  rotateY: 0
+                }}
+                transition={{ 
+                  opacity: { duration: 1 },
+                  scale: { duration: 1 },
+                  rotateY: { type: 'spring', stiffness: 80, damping: 15 }
+                }}
+                whileHover={{ 
+                  scale: 1.05,
+                  rotateY: 5,
+                  transition: { type: 'spring', stiffness: 300, damping: 20 }
+                }}
+              />
+              
+              {/* Content Overlay */}
+              <div className={styles.benefitsOverlay}>
+                {/* Speed Benefit */}
+                <Grow 
+                  in={true}
+                  style={{ transformOrigin: '0 0 0' }}
+                  timeout={{
+                    enter: 500,
+                    exit: 300
+                  }}
+                >
+                  <div className={styles.benefitCard}>
+                    <div className={styles.benefitIcon}>
+                      <img src="/assets/icons/speed-icon.svg" alt="Speed" />
+                    </div>
+                    <h3 className={styles.benefitTitle}>Speed</h3>
+                    <h4 className={styles.benefitMetric}>3 Days → 40 Min</h4>
+                    <p className={styles.benefitDescription}>
+                      AI extraction accelerates reviews by 97%
+                    </p>
+                  </div>
+                </Grow>
+                
+                {/* Accuracy Benefit */}
+                <Grow 
+                  in={true}
+                  style={{ transformOrigin: '0 0 0' }}
+                  timeout={{
+                    enter: 500,
+                    exit: 300
+                  }}
+                  // 300ms delay after first card
+                  {...{ timeout: { enter: 800 } }}
+                >
+                  <div className={styles.benefitCard}>
+                    <div className={styles.benefitIcon}>
+                      <img src="/assets/icons/accuracy-icon.svg" alt="Accuracy" />
+                    </div>
+                    <h3 className={styles.benefitTitle}>Accuracy</h3>
+                    <p className={styles.benefitDescription}>
+                      Reduces errors, ensures consistency
+                    </p>
+                  </div>
+                </Grow>
+                
+                {/* Compliance Benefit */}
+                <Grow 
+                  in={true}
+                  style={{ transformOrigin: '0 0 0' }}
+                  timeout={{
+                    enter: 500,
+                    exit: 300
+                  }}
+                  // 600ms delay after first card
+                  {...{ timeout: { enter: 1100 } }}
+                >
+                  <div className={styles.benefitCard}>
+                    <div className={styles.benefitIcon}>
+                      <img src="/assets/icons/compliance-icon.svg" alt="Compliance" />
+                    </div>
+                    <h3 className={styles.benefitTitle}>Compliance</h3>
+                    <p className={styles.benefitDescription}>
+                      Prevents penalties, ensures compliance
+                    </p>
+                  </div>
+                </Grow>
+              </div>
+            </div>
           </motion.div>
         </div>
       </motion.main>
